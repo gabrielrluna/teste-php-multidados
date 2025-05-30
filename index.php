@@ -5,9 +5,21 @@ $qtdClientes 	   = $dadosGerais->dadosClientes("c");
 $qtdUsuarios       = $dadosGerais->dadosUsuarios("c");
 $qtdFornecedores   = $dadosGerais->dadosFornecedores("c");
 
-$listaClientes     = $dadosGerais->dadosClientes("l");
-$listaUsuarios     = $dadosGerais->dadosUsuarios("l");
-$listaFornecedores = $dadosGerais->dadosFornecedores("l");
+$listaClientes     = $dadosGerais->dadosClientes("");
+$listaUsuarios     = $dadosGerais->dadosUsuarios("");
+$listaFornecedores = $dadosGerais->dadosFornecedores("");
+
+$paramClientes 	   = $_POST['paramCli'];
+// $paramUsuarios 	   = $_POST['paramUsu'];
+// $paramFornecedores = $_POST['paramForn'];
+
+$listaClientes     = $dadosGerais->dadosClientes($paramClientes);
+
+
+// $listaUsuarios     = $dadosGerais->dadosUsuarios($paramUsuarios);
+// $listaFornecedores = $dadosGerais->dadosFornecedores($paramFornecedores);
+
+
 ?>
 
 <!-- BEGIN CONTAINER -->
@@ -271,12 +283,12 @@ $listaFornecedores = $dadosGerais->dadosFornecedores("l");
 		if(corTabela == "blue"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Clientes"
 			$.ajax({
-			url: "DataRequest.php",
-			type: "GET",
-			data: {param1:""},
-			dataType: 'string',
-			success: function(dado) {
-				console.log(dado);
+			url: "index.php",
+			type: "POST",
+			data: {paramCli:""},
+			dataType: 'json',
+			success: function(dados) {
+				console.log(dados);
 			},
 			error: function(error) {
 				console.log(error);
@@ -285,47 +297,35 @@ $listaFornecedores = $dadosGerais->dadosFornecedores("l");
 
 		} else if (corTabela == "green"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Usuários"
-			$.ajax({
-				url: "DataRequest.php",
-				type: "GET",
-				data: {param1:""},
-				success: function() {
-					console.log("ListaUsu");
-				},
-				error: function(error) {
-					console.log(error);
-				}
-			});
+			// $.ajax({
+			// 	url: "DataRequest.php",
+			// 	type: "GET",
+			// 	data: {param1:""},
+			// 	success: function() {
+			// 		console.log("ListaUsu");
+			// 	},
+			// 	error: function(error) {
+			// 		console.log(error);
+			// 	}
+			// });
 		} else if (corTabela == "purple"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Fornecedores"
-			$.ajax({
-				url: "DataRequest.php",
-				type: "GET",
-				data: {param1:""},
-				success: function() {
-					console.log("ListaFor");
-				},
-				error: function(error) {
-					console.log(error);
-				}
-			});
+			// $.ajax({
+			// 	url: "DataRequest.php",
+			// 	type: "GET",
+			// 	data: {param1:""},
+			// 	success: function() {
+			// 		console.log("ListaFor");
+			// 	},
+			// 	error: function(error) {
+			// 		console.log(error);
+			// 	}
+			// });
 		}
 
 
 	}
 
-	function listara() {
-        // $.ajax({
-        //     url:"DataRequest.php",
-        //     type: "post",    //request type,
-        //     dataType: 'json',
-        //     data: {registration: "success", name: "xyz", email: "abc@gmail.com"},
-        //     success:function(result){
-        //         console.log(result.abc);
-        //     }
-        // });
-
-    }
 </script>
  
 <?php include 'rodape.php'?>
