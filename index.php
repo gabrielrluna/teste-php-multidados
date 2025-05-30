@@ -1,4 +1,13 @@
-<?php include 'cabecalho.php';?>
+<?php include 'cabecalho.php';
+
+$dadosGerais = new DataRequest();
+$qtdClientes 	 = $dadosGerais->dadosClientes("c");
+$qtdUsuarios     = $dadosGerais->dadosClientes("c");
+$qtdFornecedores = $dadosGerais->dadosClientes("c");
+?>
+
+
+
 
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
@@ -68,7 +77,7 @@
 						</div>
 						<div class="details">
 							<div class="number">
-								 1349
+								 <?php echo $qtdClientes ?>
 							</div>
 							<div class="desc">
 								 Clientes
@@ -86,7 +95,7 @@
 						</div>
 						<div class="details">
 							<div class="number">
-								549
+								 <?php echo $qtdUsuarios ?>
 							</div>
 							<div class="desc">
 								Usuários
@@ -104,7 +113,8 @@
 						</div>
 						<div class="details">
 							<div class="number">
-								89
+								<?php echo $qtdFornecedores ?>
+
 							</div>
 							<div class="desc">
 								Fornecedores
