@@ -1,4 +1,61 @@
-	<!-- BEGIN SIDEBAR -->
+<?php
+$menu = array(
+        array(
+            'opcao' => 'Dashboard',
+            'url' => 'index.php',
+            'icone' => 'fa fa-home'
+            ),
+        array(
+            'opcao' => 'Cadastro',
+            'url' => 'javascript:;',
+            'icone' => 'fa fa-file-text',
+            'subitens' => array(
+                array(
+                    'opcao' => 'Cliente',
+                    'url' => '#',
+                ),
+                array(
+                    'opcao' => 'Fornecedor',
+                    'url' => '#',
+                ),
+                array(
+                    'opcao' => 'Usuário',
+                    'url' => '#',
+                ),
+                array(
+                    'opcao' => 'Produtos',
+                    'url' => '#',
+                ),
+                array(
+                    'opcao' => 'Perfil de Acesso',
+                    'url' => '#',
+                ),                
+            )
+            ),
+        array(
+            'opcao'     => 'Relatório',
+            'url'       => 'javascript:;',
+            'icone'     => 'fa fa-bar-chart-o',
+            'subitens'  => array(
+                array(
+                    'opcao' => 'Cliente',
+                    'url' => '#',
+                ),
+                array(
+                    'opcao' => 'Produtos',
+                    'url' => '#',
+                ),
+                array(
+                    'opcao' => 'Faturamento',
+                    'url' => '#',
+                ),
+            )
+            ),
+);
+
+?>
+    
+    <!-- BEGIN SIDEBAR -->
 	<div class="page-sidebar-wrapper">
 		<div class="page-sidebar navbar-collapse collapse">
 			<!-- BEGIN SIDEBAR MENU -->
@@ -22,57 +79,43 @@
 					</form>
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				</li>
-				<li class="start active ">
-					<a href="index.html">
-					<i class="fa fa-home"></i>
-					<span class="title">
-						Dashboard
-					</span>
-					<span class="selected">
-					</span>
-					</a>
-				</li>
-				<!--Cliente-->
-				<li class="">
-					<a href="javascript:;">
-					<i class="fa fa-file-text"></i>
-					<span class="title">
-						Cadastro
-					</span>
-					<span class="arrow ">
-					</span>
-					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="#">Cliente</a>
-						</li>
-						<li>
-							<a href="#">Fornecedor</a>
-						</li>
-						<li>
-							<a href="#">Usuário</a>
-						</li>
-					</ul>
-				</li>
-				<!--Relatorio-->
-				<li class="">
-					<a href="javascript:;">
-					<i class="fa fa-bar-chart-o"></i>
-					<span class="title">
-						Relatório
-					</span>
-					<span class="arrow ">
-					</span>
-					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="#">Cliente</a>
-						</li>
-						<li>
-							<a href="#">Faturamento</a>
-						</li>
-					</ul>
-				</li>
+
+                <?php
+                foreach($menu as $item){
+                    ?>
+                    <li class="<?php echo $item['opcao'] == "Dashboard" ? "start active" : "" ?>">
+                        <a href="<?php echo $item['url']; ?>">
+                        <i class="<?php echo $item['icone']; ?>"></i>
+                        <span class="title">
+                            <?php echo $item['opcao']; ?>
+                        </span>
+                        <span class="<?php echo $item['opcao'] == "Dashboard" ? "selected" : "arrow" ?>">
+                        </span>
+                        </a>
+                            <?php
+                            if(isset($item['subitens'])){
+                              ?>
+                              <!-- <h1>Teste</h1> -->
+                                <ul class="sub-menu">
+                                    <?php
+                                    #Ordering menu items
+                                    sort($item['subitens']);
+                                    foreach($item['subitens'] as $subitem){
+                                        ?>
+                                        <li>
+                                            <a href="<?php echo $subitem['url']?>"><?php echo $subitem['opcao']?></a>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
+                                </ul>
+                              <?php                                
+                            }
+                            ?>
+                    </li>
+                    <?php
+                }
+                ?>
 			</ul>
 			<!-- END SIDEBAR MENU -->
 		</div>
