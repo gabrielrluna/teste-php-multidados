@@ -85,13 +85,13 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 								 Clientes
 							</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="#" onclick="detectaCor('blue')" >
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-					<div class="dashboard-stat green">
+					<div  class="dashboard-stat green">
 						<div class="visual">
 							<i class="fa fa-group"></i>
 						</div>
@@ -103,8 +103,8 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 								Usuários
 							</div>
 						</div>
-						<a class="more" href="#">
-						Visualizar <i class="m-icon-swapright m-icon-white"></i>
+						<a class="more" href="#" onclick="detectaCor('green')">
+						Visualizar<i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
 				</div>
@@ -122,7 +122,7 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 								Fornecedores
 							</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="#" onclick="detectaCor('purple')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -135,9 +135,9 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 			<div class="row">
 				<div class="col-md-12">
 					<!-- BEGIN SAMPLE TABLE PORTLET-->
-					<div class="portlet box grey">
+					<div id="tabela" class="portlet box grey">
 						<div class="portlet-title">
-							<div class="caption">
+							<div class="caption" id="nomeTabela">
 								<i class="fa fa-folder-open"></i>Tabela Simples
 							</div>
 							<div class="tools">
@@ -259,5 +259,24 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 	<!-- END CONTENT -->
 </div>
 <!-- END CONTAINER -->
+
+<script>
+	function detectaCor(corTabela){
+		//Trocando as cores da tabela
+		const tabela = document.getElementById('tabela');
+		const nomeTabela = document.getElementById('nomeTabela');
+		tabela.classList.remove('grey','blue','green','purple');
+		tabela.classList.add(corTabela);
+
+		//Trocando o título da tabela para melhor visualização
+		if(corTabela == "blue"){
+			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Clientes"
+		} else if (corTabela == "green"){
+			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Usuários"
+		} else if (corTabela == "purple"){
+			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Fornecedores"
+		}
+	}
+</script>
  
 <?php include 'rodape.php'?>
