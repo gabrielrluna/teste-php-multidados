@@ -1,15 +1,14 @@
 <?php include 'cabecalho.php';
 
 $dadosGerais = new DataRequest();
-$qtdClientes 	 = $dadosGerais->dadosClientes("c");
-$qtdUsuarios     = $dadosGerais->dadosUsuarios("c");
-$qtdFornecedores = $dadosGerais->dadosFornecedores("c");
+$qtdClientes 	   = $dadosGerais->dadosClientes("c");
+$qtdUsuarios       = $dadosGerais->dadosUsuarios("c");
+$qtdFornecedores   = $dadosGerais->dadosFornecedores("c");
 
-
+$listaClientes     = $dadosGerais->dadosClientes("l");
+$listaUsuarios     = $dadosGerais->dadosUsuarios("l");
+$listaFornecedores = $dadosGerais->dadosFornecedores("l");
 ?>
-
-
-
 
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
@@ -85,7 +84,7 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 								 Clientes
 							</div>
 						</div>
-						<a class="more" href="#" onclick="detectaCor('blue')" >
+						<a class="more" href="#" onclick="listar('blue')" >
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -103,7 +102,7 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 								Usuários
 							</div>
 						</div>
-						<a class="more" href="#" onclick="detectaCor('green')">
+						<a class="more" href="#" onclick="listar('green')">
 						Visualizar<i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -122,7 +121,7 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 								Fornecedores
 							</div>
 						</div>
-						<a class="more" href="#" onclick="detectaCor('purple')">
+						<a class="more" href="#" onclick="listar('purple')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -261,7 +260,7 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 <!-- END CONTAINER -->
 
 <script>
-	function detectaCor(corTabela){
+	function listar(corTabela){
 		//Trocando as cores da tabela
 		const tabela = document.getElementById('tabela');
 		const nomeTabela = document.getElementById('nomeTabela');
@@ -271,12 +270,62 @@ $qtdFornecedores = $dadosGerais->dadosFornecedores("c");
 		//Trocando o título da tabela para melhor visualização
 		if(corTabela == "blue"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Clientes"
+			$.ajax({
+			url: "DataRequest.php",
+			type: "GET",
+			data: {param1:""},
+			dataType: 'string',
+			success: function(dado) {
+				console.log(dado);
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		});
+
 		} else if (corTabela == "green"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Usuários"
+			$.ajax({
+				url: "DataRequest.php",
+				type: "GET",
+				data: {param1:""},
+				success: function() {
+					console.log("ListaUsu");
+				},
+				error: function(error) {
+					console.log(error);
+				}
+			});
 		} else if (corTabela == "purple"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Fornecedores"
+			$.ajax({
+				url: "DataRequest.php",
+				type: "GET",
+				data: {param1:""},
+				success: function() {
+					console.log("ListaFor");
+				},
+				error: function(error) {
+					console.log(error);
+				}
+			});
 		}
+
+
 	}
+
+	function listara() {
+        // $.ajax({
+        //     url:"DataRequest.php",
+        //     type: "post",    //request type,
+        //     dataType: 'json',
+        //     data: {registration: "success", name: "xyz", email: "abc@gmail.com"},
+        //     success:function(result){
+        //         console.log(result.abc);
+        //     }
+        // });
+
+    }
 </script>
  
 <?php include 'rodape.php'?>
