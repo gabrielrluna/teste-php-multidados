@@ -2,8 +2,10 @@
 
 $dadosGerais = new DataRequest();
 $qtdClientes 	 = $dadosGerais->dadosClientes("c");
-$qtdUsuarios     = $dadosGerais->dadosClientes("c");
-$qtdFornecedores = $dadosGerais->dadosClientes("c");
+$qtdUsuarios     = $dadosGerais->dadosUsuarios("c");
+$qtdFornecedores = $dadosGerais->dadosFornecedores("c");
+
+
 ?>
 
 
