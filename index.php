@@ -134,7 +134,7 @@ $qtdUsuarios = $dadosGerais->dadosUsuarios("c");
         <div id="tabela" class="portlet box grey">
             <div class="portlet-title">
                 <div class="caption" id="nomeTabela">
-                    <i class="fa fa-folder-open"></i>Tabela Simples
+                    <i class="fa fa-folder-open"></i>Selecione uma das tabelas acima para exibir a lista
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
@@ -143,9 +143,7 @@ $qtdUsuarios = $dadosGerais->dadosUsuarios("c");
                     <a href="javascript:;" class="remove"></a>
                 </div>
             </div>
-            <div class="portlet-body" id="areaDados">
-                <h1>Selecione uma caixa</h1>
-            </div>
+            <div class="portlet-body" id="areaDados"></div>
         </div>
         <!-- END SAMPLE TABLE PORTLET-->
     </div>
