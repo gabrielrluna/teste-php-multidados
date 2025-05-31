@@ -1,4 +1,34 @@
-<?php  include 'DataRequest.php'; ?>
+<?php  include 'DataRequest.php';
+
+$dadosGerais = new DataRequest();
+
+//Verificando se se existe uma requisição AJAX para evitar saída
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
+	$tipo = $_GET['tipo'] ?? 'clientes';
+	header('Content-Type: application/json');
+
+	try{
+		switch($tipo){
+			case 'clientes':
+				echo json_encode($dadosGerais->dadosClientes());
+				break;
+			case 'fornecedores':
+				echo json_encode($dadosGerais->dadosFornecedores());
+				break;
+			case 'usuarios':
+				echo json_encode($dadosGerais->dadosUsuarios());
+				break;
+			default:
+			throw new Exception('Tipo de dados inválido');		
+		}
+	} catch(Exception $e){
+		echo json_encode(['error' => $e->getMessage()]);
+	}
+	exit;
+}
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">

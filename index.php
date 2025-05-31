@@ -1,25 +1,8 @@
-<?php include 'cabecalho.php';
-
-$dadosGerais = new DataRequest();
-$qtdClientes 	   = $dadosGerais->dadosClientes("c");
-$qtdUsuarios       = $dadosGerais->dadosUsuarios("c");
-$qtdFornecedores   = $dadosGerais->dadosFornecedores("c");
-
-$listaClientes     = $dadosGerais->dadosClientes("");
-$listaUsuarios     = $dadosGerais->dadosUsuarios("");
-$listaFornecedores = $dadosGerais->dadosFornecedores("");
-
-$paramClientes 	   = $_POST['paramCli'];
-// $paramUsuarios 	   = $_POST['paramUsu'];
-// $paramFornecedores = $_POST['paramForn'];
-
-$listaClientes     = $dadosGerais->dadosClientes($paramClientes);
-
-
-// $listaUsuarios     = $dadosGerais->dadosUsuarios($paramUsuarios);
-// $listaFornecedores = $dadosGerais->dadosFornecedores($paramFornecedores);
-
-
+<?php
+include 'cabecalho.php';
+$qtdClientes = $dadosGerais->dadosClientes("c");
+$qtdFornecedores = $dadosGerais->dadosFornecedores("c");
+$qtdUsuarios = $dadosGerais->dadosUsuarios("c");
 ?>
 
 <!-- BEGIN CONTAINER -->
@@ -96,10 +79,12 @@ $listaClientes     = $dadosGerais->dadosClientes($paramClientes);
 								 Clientes
 							</div>
 						</div>
-						<a class="more" href="#" onclick="listar('blue')" >
+						<a class="more" href="#" id="exibirClientes"  onclick="detectaCor('blue')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
+						
 					</div>
+					
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 					<div  class="dashboard-stat green">
@@ -114,7 +99,7 @@ $listaClientes     = $dadosGerais->dadosClientes($paramClientes);
 								Usuários
 							</div>
 						</div>
-						<a class="more" href="#" onclick="listar('green')">
+						<a class="more" href="#" id="exibirUsuarios"onclick="detectaCor('green')">
 						Visualizar<i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -133,8 +118,8 @@ $listaClientes     = $dadosGerais->dadosClientes($paramClientes);
 								Fornecedores
 							</div>
 						</div>
-						<a class="more" href="#" onclick="listar('purple')">
-						Visualizar <i class="m-icon-swapright m-icon-white"></i>
+						<a class="more" href="#" id="exibirFornecedores" onclick="detectaCor('purple')">
+						Visualizar <i class="m-icon-swapright m-icon-white" ></i>
 						</a>
 					</div>
 				</div>
@@ -143,189 +128,47 @@ $listaClientes     = $dadosGerais->dadosClientes($paramClientes);
 			<div class="clearfix">
 			</div>
 			<!--Tabela-->
-			<div class="row">
-				<div class="col-md-12">
-					<!-- BEGIN SAMPLE TABLE PORTLET-->
-					<div id="tabela" class="portlet box grey">
-						<div class="portlet-title">
-							<div class="caption" id="nomeTabela">
-								<i class="fa fa-folder-open"></i>Tabela Simples
-							</div>
-							<div class="tools">
-								<a href="javascript:;" class="collapse"></a>
-								<a href="#portlet-config" data-toggle="modal" class="config"></a>
-								<a href="javascript:;" class="reload"></a>
-								<a href="javascript:;" class="remove"></a>
-							</div>
-						</div>
-						<div class="portlet-body">
-							<div class="table-responsive">
-								<table class="table table-hover">
-								<thead>
-								<tr>
-									<th>
-										#
-									</th>
-									<th>
-										Nome
-									</th>
-									<th>
-										Sobrenome
-									</th>
-									<th>
-										Usuario
-									</th>
-									<th>
-										Status
-									</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td>
-										1
-									</td>
-									<td>
-										Mark
-									</td>
-									<td>
-										Otto
-									</td>
-									<td>
-										makr124
-									</td>
-									<td>
-										<span class="label label-sm label-success">
-											Aprovado
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										2
-									</td>
-									<td>
-										Jacob
-									</td>
-									<td>
-										Nilson
-									</td>
-									<td>
-										jac123
-									</td>
-									<td>
-										<span class="label label-sm label-info">
-											Pendente
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										3
-									</td>
-									<td>
-										Larry
-									</td>
-									<td>
-										Cooper
-									</td>
-									<td>
-										lar
-									</td>
-									<td>
-										<span class="label label-sm label-warning">
-											Suspenso
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										4
-									</td>
-									<td>
-										Sandy
-									</td>
-									<td>
-										Lim
-									</td>
-									<td>
-										sanlim
-									</td>
-									<td>
-										<span class="label label-sm label-danger">
-											Bloqueado
-										</span>
-									</td>
-								</tr>
-								</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<!-- END SAMPLE TABLE PORTLET-->
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+        <div id="tabela" class="portlet box grey">
+            <div class="portlet-title">
+                <div class="caption" id="nomeTabela">
+                    <i class="fa fa-folder-open"></i>Tabela Simples
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
+                    <a href="javascript:;" class="reload" id="recarregarTabela"></a>
+                    <a href="javascript:;" class="remove"></a>
+                </div>
+            </div>
+            <div class="portlet-body" id="areaDados">
+                <h1>Selecione uma caixa</h1>
+            </div>
+        </div>
+        <!-- END SAMPLE TABLE PORTLET-->
+    </div>
+</div>
 	<!-- END CONTENT -->
 </div>
 <!-- END CONTAINER -->
 
 <script>
-	function listar(corTabela){
-		//Trocando as cores da tabela
+	function detectaCor(corTabela){
 		const tabela = document.getElementById('tabela');
 		const nomeTabela = document.getElementById('nomeTabela');
 		tabela.classList.remove('grey','blue','green','purple');
 		tabela.classList.add(corTabela);
 
-		//Trocando o título da tabela para melhor visualização
 		if(corTabela == "blue"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Clientes"
-			$.ajax({
-			url: "index.php",
-			type: "POST",
-			data: {paramCli:""},
-			dataType: 'json',
-			success: function(dados) {
-				console.log(dados);
-			},
-			error: function(error) {
-				console.log(error);
-			}
-		});
-
 		} else if (corTabela == "green"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Usuários"
-			// $.ajax({
-			// 	url: "DataRequest.php",
-			// 	type: "GET",
-			// 	data: {param1:""},
-			// 	success: function() {
-			// 		console.log("ListaUsu");
-			// 	},
-			// 	error: function(error) {
-			// 		console.log(error);
-			// 	}
-			// });
 		} else if (corTabela == "purple"){
 			nomeTabela.innerHTML = "<i class='fa fa-folder-open'></i>Lista de Fornecedores"
-			// $.ajax({
-			// 	url: "DataRequest.php",
-			// 	type: "GET",
-			// 	data: {param1:""},
-			// 	success: function() {
-			// 		console.log("ListaFor");
-			// 	},
-			// 	error: function(error) {
-			// 		console.log(error);
-			// 	}
-			// });
 		}
-
-
 	}
-
 </script>
  
 <?php include 'rodape.php'?>
